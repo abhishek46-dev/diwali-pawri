@@ -1,0 +1,243 @@
+@import "tailwindcss";
+
+@theme {
+  --color-ink: #120204;
+  --color-wine: #7a0014;
+  --color-sindoor: #b0001e;
+  --color-rani: #e3132f;
+  --color-rani-deep: #9e0b1f;
+  --color-silver: #d9dce2;
+  --color-gold: #ffd23f;
+  --color-marigold: #ff9f1c;
+  --color-cream: #fff4e2;
+  --color-teal: #5ccfc0;
+
+  --font-display: var(--font-anton), Impact, sans-serif;
+  --font-serif: var(--font-instrument), Georgia, serif;
+  --font-mono: var(--font-jetbrains), ui-monospace, monospace;
+  --font-sans: var(--font-instrument), Georgia, serif;
+}
+
+html {
+  background: var(--color-ink);
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-ink);
+  color: var(--color-cream);
+  font-family: var(--font-sans);
+  font-size: 19px;
+  line-height: 1.5;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: var(--color-gold);
+  color: var(--color-ink);
+}
+
+:focus-visible {
+  outline: 3px solid var(--color-gold);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+/* Anton is an all-caps poster face */
+.font-display {
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+  font-weight: 400;
+}
+
+/* Gold-foil text. Static on purpose: animating background-clip text repaints every frame. */
+.glitter {
+  background-image:
+    url(/img/glitter.png),
+    linear-gradient(100deg, #fff6d8 0%, #ffd23f 16%, #c8901a 32%, #fff1b8 48%, #e0a82e 64%, #ffe58a 80%, #fff6d8 100%);
+  background-size: 160px 160px, 100% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 6px 22px rgb(255 190 40 / 0.28));
+}
+
+.glitter-silver {
+  background-image:
+    url(/img/glitter.png),
+    linear-gradient(100deg, #ffffff 0%, #c9ccd3 16%, #7f848e 32%, #f4f5f7 48%, #a6abb4 64%, #e6e8ec 80%, #ffffff 100%);
+  background-size: 160px 160px, 100% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 6px 22px rgb(220 225 235 / 0.18));
+}
+
+.gold-foil {
+  background-image:
+    url(/img/glitter.png),
+    linear-gradient(100deg, #fff6d8, #ffd23f 20%, #c8901a 40%, #fff1b8 55%, #e0a82e 70%, #ffe58a 85%, #fff6d8);
+  background-size: 160px 160px, 100% 100%;
+}
+
+/* Hero: the photo sits centred at full height over a blurred, darkened copy of itself */
+.hero-blur {
+  background: url(/img/hero-dj.webp) center / cover no-repeat;
+  filter: blur(40px) brightness(0.32) saturate(0.8);
+  transform: scale(1.15);
+}
+.hero-photo {
+  /* zoomed in a little, anchored on the faces */
+  background: url(/img/hero-dj.webp) 50% 30% / 118% auto no-repeat;
+  filter: contrast(1.12) saturate(0.9);
+  -webkit-mask: linear-gradient(90deg, transparent, #000 14%, #000 86%, transparent);
+  mask: linear-gradient(90deg, transparent, #000 14%, #000 86%, transparent);
+}
+@media (max-width: 640px) {
+  .hero-photo {
+    -webkit-mask: linear-gradient(180deg, #000 70%, transparent);
+    mask: linear-gradient(180deg, #000 70%, transparent);
+  }
+}
+
+.twinkle {
+  animation: twinkle 3.2s ease-in-out infinite;
+}
+@keyframes twinkle {
+  0%, 100% { opacity: 0.35; transform: scale(0.7); }
+  50% { opacity: 1; transform: scale(1); }
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5em;
+  min-height: 52px;
+  padding: 0.95em 1.7em;
+  border-radius: 999px;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 0.85rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform 0.25s cubic-bezier(0.3, 1.6, 0.5, 1);
+}
+.btn:hover {
+  transform: rotate(-2deg) scale(1.05);
+}
+.btn-gold {
+  color: var(--color-ink);
+  box-shadow: 0 0 0 3px var(--color-ink), 0 0 0 5px var(--color-gold), 0 10px 40px rgb(255 159 28 / 0.45);
+}
+.btn-ghost {
+  color: var(--color-cream);
+  background: rgb(42 5 9 / 0.35);
+  box-shadow: inset 0 0 0 2px var(--color-cream);
+}
+
+/* Scalloped edges top and bottom, like a festival ticket */
+.ticket {
+  -webkit-mask:
+    radial-gradient(11px at 50% 0, #0000 97%, #000) 50% 0 / 22px 51% repeat-x,
+    radial-gradient(11px at 50% 100%, #0000 97%, #000) 50% 100% / 22px 51% repeat-x;
+  mask:
+    radial-gradient(11px at 50% 0, #0000 97%, #000) 50% 0 / 22px 51% repeat-x,
+    radial-gradient(11px at 50% 100%, #0000 97%, #000) 50% 100% / 22px 51% repeat-x;
+}
+
+/* Mughal arch window */
+.arch {
+  -webkit-mask: url(/img/arch.svg) center / 100% 100% no-repeat;
+  mask: url(/img/arch.svg) center / 100% 100% no-repeat;
+}
+
+.field {
+  width: 100%;
+  font: inherit;
+  font-size: 1.05rem;
+  color: var(--color-cream);
+  background: rgb(22 2 10 / 0.55);
+  border: 2px solid rgb(255 244 226 / 0.3);
+  border-radius: 16px;
+  padding: 0.85rem 1rem;
+}
+.field::placeholder {
+  color: rgb(255 244 226 / 0.5);
+}
+.field:focus {
+  outline: none;
+  border-color: var(--color-gold);
+  box-shadow: 0 0 0 4px rgb(255 210 63 / 0.25);
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  min-height: 44px;
+  padding: 0.5rem 1.05rem;
+  border-radius: 999px;
+  border: 2px solid rgb(255 244 226 / 0.45);
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-cream);
+  cursor: pointer;
+  transition: transform 0.2s cubic-bezier(0.3, 1.6, 0.5, 1), background-color 0.2s;
+}
+.chip[aria-pressed="true"] {
+  background: var(--color-rani);
+  border-color: var(--color-rani);
+  color: #fff;
+  transform: rotate(-2deg);
+}
+
+/* The only looping motion left: transform-only, so it stays on the compositor */
+.marquee {
+  animation: marquee 40s linear infinite;
+}
+.marquee-reverse {
+  animation-direction: reverse;
+}
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.bob {
+  animation: bob 5s ease-in-out infinite;
+}
+@keyframes bob {
+  0%, 100% { transform: translateY(0) rotate(-4deg); }
+  50% { transform: translateY(-12px) rotate(4deg); }
+}
+
+.fade-up {
+  animation: fade-up 0.9s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: none; }
+}
+
+.no-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-gold) transparent;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .marquee, .bob, .fade-up, .twinkle {
+    animation: none;
+  }
+}
