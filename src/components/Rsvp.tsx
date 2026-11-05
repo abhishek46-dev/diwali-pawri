@@ -102,7 +102,7 @@ export default function Rsvp() {
           So&hellip; you&rsquo;re coming?
         </h2>
         <p className="mt-4 text-cream/75">
-          RSVP by {party.rsvpBy}.{party.hostWhatsApp ? ` Sending opens WhatsApp with your reply typed out for ${party.host}.` : ""}
+          RSVP before {party.rsvpBy}.{party.hostWhatsApp ? ` Sending opens WhatsApp with your reply typed out for ${party.host}.` : ""}
         </p>
       </div>
 

@@ -10,14 +10,9 @@ const DIYAS = [
 
 export default function Quote() {
   return (
-    <section aria-label="A line about the night" className="relative overflow-hidden bg-black pt-32">
-      <p className="mx-auto max-w-[24ch] px-5 text-center font-serif text-[clamp(2rem,4vw,3.4rem)] leading-tight text-silver italic">
-        Diyas lit, glasses up, and at least one aunty asking{" "}
-        <span className="text-gold">&ldquo;so, when&rsquo;s the wedding?&rdquo;</span>
-      </p>
-
+    <section aria-hidden className="relative overflow-hidden bg-black pt-16">
       {/* a strip of glittering water with diyas bobbing on it */}
-      <div className="relative mt-16 h-44 sm:h-52">
+      <div className="relative h-44 sm:h-52">
         <div
           className="absolute inset-0"
           style={{

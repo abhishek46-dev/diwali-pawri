@@ -3,13 +3,13 @@
 export const party = {
   title: "Diwali After Dark",
   tagline: "Diyas and disco.",
-  host: "Jaspreet",
+  host: "the team",
   // ISO date-time with timezone offset (IST)
-  startsAt: "2026-11-07T19:30:00+05:30",
+  startsAt: "2026-11-07T18:00:00+05:30",
   dateLabel: "Saturday, 7 November",
   shortDate: "07.11.26",
-  timeLabel: "7:30 PM till the last sparkler",
-  rsvpBy: "3 November",
+  timeLabel: "6 PM till the last sparkler",
+  rsvpBy: "6 November",
   venue: "Orion Studio Colive Apartments",
   // Optional extra line (flat number, area, city). Leave empty to show just the venue name.
   venueAddress: "",

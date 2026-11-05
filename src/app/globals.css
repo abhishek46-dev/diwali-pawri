@@ -82,24 +82,83 @@ body {
   background-size: 160px 160px, 100% 100%;
 }
 
-/* Hero: the photo sits centred at full height over a blurred, darkened copy of itself */
-.hero-blur {
-  background: url(/img/hero-dj.webp) center / cover no-repeat;
-  filter: blur(40px) brightness(0.32) saturate(0.8);
-  transform: scale(1.15);
+/* Hero: desi maximalist stage. Every looping motion is transform/opacity only. */
+.h-spin, .h-spin-r, .h-spin-s, .h-firework, .h-glint, .h-zoom, .h-eye, .h-burst { transform-box: fill-box; transform-origin: 50% 50%; }
+.h-sway, .h-swing { transform-box: fill-box; transform-origin: 50% 0%; }
+.h-fan { transform-box: fill-box; transform-origin: 94% 14%; }
+.h-trunk { transform-box: fill-box; transform-origin: 0% 100%; }
+.h-clink-l, .h-clink-r { transform-box: fill-box; transform-origin: 50% 100%; }
+.h-garland { transform-box: view-box; }
+.h-flame { transform-box: fill-box; transform-origin: 50% 100%; filter: drop-shadow(0 0 6px #f6b93b) drop-shadow(0 0 16px rgb(246 185 59 / 0.55)); animation: h-flicker 1.7s ease-in-out infinite; }
+.h-par { transition: transform 0.6s cubic-bezier(0.2, 0.7, 0.2, 1); }
+.h-echo { transform-origin: 50% 55%; opacity: 0; animation: h-echo 4s ease-out infinite; }
+.h-foil {
+  background: linear-gradient(100deg, #7a5a17 0%, #c9a23a 22%, #fff1c9 40%, #d4af37 52%, #8c6a1f 70%, #e9c976 86%, #7a5a17 100%);
+  background-size: 250% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  animation: h-shimmer 6s ease-in-out infinite alternate;
 }
-.hero-photo {
-  /* zoomed in a little, anchored on the faces */
-  background: url(/img/hero-dj.webp) 50% 30% / 118% auto no-repeat;
-  filter: contrast(1.12) saturate(0.9);
-  -webkit-mask: linear-gradient(90deg, transparent, #000 14%, #000 86%, transparent);
-  mask: linear-gradient(90deg, transparent, #000 14%, #000 86%, transparent);
+.h-rise { animation: h-rise 1.8s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+.h-fade { animation: h-fade 2.4s ease-out both; }
+.h-draw { stroke-dasharray: 1; animation: h-draw 3.2s cubic-bezier(0.6, 0.1, 0.2, 1) both; }
+.h-twinkle { animation: h-twinkle 4s ease-in-out infinite; }
+.h-glint { animation: h-glint 4s ease-in-out infinite; }
+.h-fall { animation: h-fall 14s linear infinite; }
+.h-spin { animation: h-spin 120s linear infinite; }
+.h-spin-r { animation: h-spin 95s linear infinite reverse; }
+.h-spin-s { animation: h-spin 50s linear infinite; }
+.h-zoom { animation: h-zoom 11s linear infinite; }
+.h-sway { animation: h-sway 3s ease-in-out infinite alternate; }
+.h-swing { animation: h-swing 5s ease-in-out infinite alternate; }
+.h-fan { animation: h-fan 4.5s ease-in-out infinite alternate; }
+.h-eye { animation: h-eye 2.8s ease-in-out infinite; }
+.h-trunk { animation: h-trunk 3.6s ease-in-out infinite alternate; }
+.h-bob { animation: h-bob 2.4s ease-in-out infinite alternate; }
+.h-garland { animation: h-garland 6s ease-in-out infinite alternate; }
+.h-firework { animation: h-firework 3.6s ease-out infinite; }
+.h-drift { animation: h-drift 60s linear infinite; }
+.h-clink-l { animation: h-clink-l 4.5s ease-in-out infinite; }
+.h-clink-r { animation: h-clink-r 4.5s ease-in-out infinite; }
+.h-burst { opacity: 0; animation: h-burst 4.5s ease-out infinite; }
+.h-bubble { animation: h-bubble 2.6s ease-in infinite; }
+@keyframes h-shimmer { from { background-position: 0% 50%; } to { background-position: 100% 50%; } }
+@keyframes h-rise { from { opacity: 0; transform: translateY(26px); filter: blur(6px); } to { opacity: 1; transform: none; filter: none; } }
+@keyframes h-fade { from { opacity: 0; } to { opacity: 1; } }
+@keyframes h-draw { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
+@keyframes h-twinkle { 0%, 100% { opacity: 0.15; } 50% { opacity: 1; } }
+@keyframes h-glint { 0%, 100% { opacity: 0; transform: scale(0.3) rotate(0deg); } 50% { opacity: 1; transform: scale(1) rotate(45deg); } }
+@keyframes h-fall { 0% { opacity: 0; transform: translate(0, -40px) rotate(0deg); } 8% { opacity: 1; } 50% { transform: translate(22px, 460px) rotate(200deg); } 92% { opacity: 0.9; } 100% { opacity: 0; transform: translate(-8px, 960px) rotate(400deg); } }
+@keyframes h-spin { to { transform: rotate(360deg); } }
+@keyframes h-zoom { 0% { opacity: 0; transform: scale(0.06); } 12% { opacity: 1; } 80% { opacity: 0.85; } 100% { opacity: 0; transform: scale(2.7); } }
+@keyframes h-sway { from { transform: rotate(-4deg); } to { transform: rotate(4deg); } }
+@keyframes h-swing { from { transform: rotate(-5deg); } to { transform: rotate(5deg); } }
+@keyframes h-fan { from { transform: rotate(-4deg) scale(0.97); } to { transform: rotate(3deg) scale(1.03); } }
+@keyframes h-eye { 0%, 100% { opacity: 0.75; transform: scale(0.92); } 50% { opacity: 1; transform: scale(1.12); } }
+@keyframes h-trunk { from { transform: rotate(-7deg); } to { transform: rotate(6deg); } }
+@keyframes h-bob { from { transform: translateY(0); } to { transform: translateY(-5px); } }
+@keyframes h-garland { from { transform: rotate(-1.6deg); } to { transform: rotate(1.6deg); } }
+@keyframes h-firework { 0% { opacity: 0; transform: scale(0.1); } 12% { opacity: 1; } 55% { opacity: 0.95; transform: scale(1); } 100% { opacity: 0; transform: scale(1.18); } }
+@keyframes h-drift { from { transform: translate(0, 0); } to { transform: translate(110px, 110px); } }
+@keyframes h-echo { 0% { opacity: 0.75; transform: scale(1); } 100% { opacity: 0; transform: scale(1.4); } }
+@keyframes h-clink-l { 0%, 62%, 100% { transform: rotate(0deg); } 76% { transform: rotate(-7deg); } 84% { transform: rotate(1.2deg); } 90% { transform: rotate(0deg); } }
+@keyframes h-clink-r { 0%, 62%, 100% { transform: rotate(0deg); } 76% { transform: rotate(7deg); } 84% { transform: rotate(-1.2deg); } 90% { transform: rotate(0deg); } }
+@keyframes h-burst { 0%, 82% { opacity: 0; transform: scale(0.2); } 86% { opacity: 1; transform: scale(1.1); } 100% { opacity: 0; transform: scale(1.6); } }
+@keyframes h-bubble { 0% { opacity: 0; transform: translateY(0); } 20% { opacity: 0.9; } 100% { opacity: 0; transform: translateY(-34px); } }
+@keyframes h-flicker { 0%, 100% { transform: scale(1, 1) rotate(0deg); } 30% { transform: scale(0.92, 1.08) rotate(-3deg); } 60% { transform: scale(1.04, 0.95) rotate(2deg); } }
+
+/* BYOB neon bottles */
+.neon {
+  filter: drop-shadow(0 0 2px currentColor) drop-shadow(0 0 10px currentColor) drop-shadow(0 0 24px currentColor);
 }
-@media (max-width: 640px) {
-  .hero-photo {
-    -webkit-mask: linear-gradient(180deg, #000 70%, transparent);
-    mask: linear-gradient(180deg, #000 70%, transparent);
-  }
+.flicker {
+  animation: flicker 6s linear infinite;
+}
+@keyframes flicker {
+  0%, 18%, 22%, 25%, 53%, 57%, 100% { opacity: 1; }
+  20%, 24%, 55% { opacity: 0.35; }
 }
 
 .twinkle {
@@ -237,7 +296,13 @@ body {
   html {
     scroll-behavior: auto;
   }
-  .marquee, .bob, .fade-up, .twinkle {
+  .marquee, .bob, .fade-up, .twinkle, .flicker {
     animation: none;
+  }
+  [class*="h-"] {
+    animation: none !important;
+  }
+  .h-burst, .h-echo, .h-fall {
+    opacity: 0;
   }
 }
